@@ -1,0 +1,58 @@
+---
+// src/pages/tags/[tag].astro
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+export async function getStaticPaths() {
+    const allPosts = await getCollection("artigos");
+
+    // Extrai todas as tags únicas de todos os artigos
+    const uniqueTags = [
+        ...new Set(allPosts.map((post) => post.data.tags).flat()),
+    ];
+
+    return uniqueTags.map((tag) => {
+        const filteredPosts = allPosts.filter((post) =>
+            post.data.tags.includes(tag),
+        );
+        return {
+            params: { tag },
+            props: { posts: filteredPosts },
+        };
+    });
+}
+
+const { tag } = Astro.params;
+const { posts } = Astro.props;
+---
+
+<BaseLayout title={`Formulário de Índice: ${tag}`}>
+    <div class="border-b-4 border-octo-ink mb-8 pb-4">
+        <div class="font-mono text-xs font-bold text-octo-stamp uppercase tracking-widest mb-2">
+            Catálogo de Evidências Cruzadas
+        </div>
+        <h1 class="text-octo-ink font-display font-bold text-3xl md:text-5xl uppercase leading-none">
+            Índice de Pesquisa: 
+            <span class="inline-block mt-2 font-mono text-xl md:text-3xl border-2 border-octo-ink p-2 shadow-[4px_4px_0_0_rgba(28,35,49,1)] bg-octo-paper">
+                [{tag}]
+            </span>
+        </h1>
+    </div>
+    
+    <div class="space-y-6">
+        {posts.map((post) => (
+            <a href={`/artigos/${post.id}`} class="block border-2 border-octo-ink p-4 bg-octo-paper hover:bg-[#EBE7DF] transition-colors relative group">
+                <div class="absolute -left-2 top-4 w-4 h-8 bg-octo-ink"></div>
+                
+                <h2 class="text-2xl font-display font-bold text-octo-ink uppercase mb-2 pl-4">
+                    {post.data.title}
+                </h2>
+                
+                <div class="pl-4 font-mono text-xs font-bold text-octo-stamp uppercase flex gap-4">
+                    <span>Data: {new Date(post.data.pubDate).toLocaleDateString('pt-BR')}</span>
+                    <span>Nível: {post.data.evidenceScale}</span>
+                </div>
+            </a>
+        ))}
+    </div>
+</BaseLayout>

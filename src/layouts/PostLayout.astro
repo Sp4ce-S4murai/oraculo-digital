@@ -1,0 +1,57 @@
+---
+// src/layouts/PostLayout.astro
+import BaseLayout from './BaseLayout.astro';
+import TentacleDivider from '../content/tentacle-divider.astro';
+
+const { frontmatter } = Astro.props;
+---
+<BaseLayout title={frontmatter.title} description={frontmatter.description}>
+    <article class="prose prose-octo max-w-none">
+        <header class="mb-12 border-b-4 border-octo-ink pb-8">
+            <div class="font-mono text-sm font-bold text-octo-stamp uppercase tracking-widest mb-4">
+                [ REGISTRO DE ANÁLISE COMPILADA ]
+            </div>
+            
+            <h1 class="text-3xl md:text-5xl font-display font-bold uppercase text-octo-ink mb-8 leading-none pb-4 border-b-2 border-dashed border-octo-ink">
+                {frontmatter.title}
+            </h1>
+            
+            {/* GRID DO FORMULÁRIO */}
+            <div class="grid grid-cols-2 md:grid-cols-4 border-2 border-octo-ink bg-octo-paper shadow-[4px_4px_0_0_rgba(28,35,49,1)]">
+                <div class="flex flex-col border-b md:border-b-0 border-r border-octo-ink p-3">
+                    <span class="font-mono text-[10px] sm:text-xs font-bold text-octo-stamp mb-1 uppercase tracking-wider">Data Intcpt</span>
+                    <span class="font-mono text-xs sm:text-sm font-bold text-octo-ink uppercase">{frontmatter.pubDate ? new Date(frontmatter.pubDate).toLocaleDateString('pt-BR') : 'CLASSIFIED'}</span>
+                </div>
+                <div class="flex flex-col border-b md:border-b-0 border-octo-ink md:border-r p-3">
+                    <span class="font-mono text-[10px] sm:text-xs font-bold text-octo-stamp mb-1 uppercase tracking-wider">Depto.</span>
+                    <span class="font-mono text-xs sm:text-sm font-bold text-octo-ink uppercase">{frontmatter.category}</span>
+                </div>
+                <div class="flex flex-col border-r border-octo-ink p-3 col-span-2 md:col-span-1">
+                    <span class="font-mono text-[10px] sm:text-xs font-bold text-octo-stamp mb-1 uppercase tracking-wider">Evidência. Grau</span>
+                    <span class="font-mono text-xs sm:text-sm font-bold uppercase underline decoration-2 underline-offset-4">{frontmatter.evidenceScale}</span>
+                </div>
+                <div class="flex flex-col p-3 bg-octo-ink text-octo-paper col-span-2 md:col-span-1 justify-center">
+                    <span class="font-mono text-[10px] font-bold mb-1 uppercase tracking-wider opacity-80">Agente Respons.</span>
+                    <span class="font-mono text-xs sm:text-sm font-bold uppercase">{frontmatter.author || 'REDACTED'}</span>
+                </div>
+            </div>
+            
+            {frontmatter.tags && (
+                <div class="mt-8 flex flex-wrap gap-2 items-center">
+                    <span class="font-mono text-xs font-bold text-octo-stamp uppercase mr-2. border-b-2 border-octo-ink">Índices (Tags):</span>
+                    {frontmatter.tags.map((tag: string) => (
+                        <span class="px-2 py-1 font-mono text-xs font-bold border-2 border-octo-ink text-octo-ink uppercase bg-octo-paper hover:bg-octo-ink hover:text-octo-paper transition-colors shadow-[2px_2px_0_0_rgba(28,35,49,1)]">
+                            {tag}
+                        </span>
+                    ))}
+                </div>
+            )}
+        </header>
+
+        <div class="font-serif text-lg leading-relaxed text-justify hyphens-auto mt-8">
+            <slot />
+        </div>
+        
+        <TentacleDivider />
+    </article>
+</BaseLayout>

@@ -1,0 +1,91 @@
+---
+// src/layouts/BaseLayout.astro
+import BaseHead from '../content/BaseHead.astro';
+import { Image } from 'astro:assets';
+import logoOcto from '../assets/logo-octo.png';
+
+export interface Props {
+    title: string;
+    description?: string;
+    image?: string;
+}
+
+const { title, description = 'Dossiê O.C.T.O. - Acesso Restrito', image } = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="pt-BR" class="bg-octo-paper text-octo-ink font-serif antialiased">
+    <head>
+        <BaseHead title={title} description={description} image={image} />
+        {/* Adicionando Fontes Requisitadas via Google Fonts Mapeadas ao O.C.T.O */}
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400&family=Oswald:wght@400;500;700&display=swap" rel="stylesheet">
+    </head>
+    <body class="min-h-screen bg-octo-grid selection:bg-octo-ink selection:text-octo-paper py-8 px-4 md:px-8">
+        <div class="max-w-6xl mx-auto">
+            {/* Contêiner simulando formulário impresso */}
+            <main class="border-4 border-octo-ink bg-octo-paper p-6 md:p-12 shadow-[12px_12px_0_0_rgba(28,35,49,1)]">
+                {/* HEADER O.C.T.O. */}
+                <header class="mb-10 border-b-4 border-octo-ink pb-2">
+                    <div class="flex flex-col md:flex-row items-center md:items-start gap-8 mb-6">
+                        <div class="w-48 h-48 md:w-64 md:h-64 flex-shrink-0">
+                            <Image 
+                                src={logoOcto} 
+                                alt="Logotipo do O.C.T.O - Observação e Coleta de Transmissões e Objetos" 
+                                class="w-full h-full object-contain mix-blend-multiply drop-shadow-none"
+                            />
+                        </div>
+                        <div class="flex flex-col justify-center text-center md:text-left mt-0 md:mt-8">
+                            <a href="/" class="text-octo-ink font-display font-bold text-5xl md:text-[5rem] tracking-tighter uppercase leading-[0.8] hover:opacity-80 transition-opacity">
+                                Oráculo Digital
+                            </a>
+                            <span class="font-display text-xl md:text-4xl font-bold tracking-widest uppercase mt-4 block">
+                                Uma Publicação do O.C.T.O.
+                            </span>
+                        </div>
+                    </div>
+                    
+                    {/* Menu Horizontal Estilo Régua */}
+                    <nav class="border-t-4 border-b-4 border-octo-ink py-2">
+                        <ul class="flex flex-wrap items-center justify-center md:justify-between gap-y-2 gap-x-1 font-display font-bold uppercase text-octo-ink text-sm lg:text-lg tracking-widest">
+                            <li><a href="/" class="hover:underline decoration-2 underline-offset-4">INÍCIO</a></li>
+                            <li class="hidden md:inline">/</li>
+                            <li><a href="/categorias/Unidade de Coleta de Objetos" class="hover:underline decoration-2 underline-offset-4">ARQUIVOS UAP/OVNI</a></li>
+                            <li class="hidden md:inline">/</li>
+                            <li><a href="/categorias/Departamento de Transmissões" class="hover:underline decoration-2 underline-offset-4">DADOS DE SINAIS</a></li>
+                            <li class="hidden md:inline">/</li>
+                            <li><a href="/tags/Tecnologia de Fronteira" class="hover:underline decoration-2 underline-offset-4">TECNOLOGIA DE FRONTEIRA</a></li>
+                            <li class="hidden md:inline">/</li>
+                            <li><a href="/categorias/Análise de Anomalias" class="hover:underline decoration-2 underline-offset-4">ANOMALIAS</a></li>
+                            <li class="hidden md:inline">/</li>
+                            <li><a href="/sobre" class="hover:underline decoration-2 underline-offset-4">SOBRE O O.C.T.O.</a></li>
+                        </ul>
+                    </nav>
+                </header>
+                
+                <section class="min-h-[50vh]">
+                    <slot />
+                </section>
+                
+                {/* FOOTER O.C.T.O. */}
+                <footer class="mt-16 pt-8 border-t-4 border-octo-ink flex flex-col items-center text-center gap-4 text-xs font-mono font-bold text-octo-ink">
+                    <div class="flex flex-col md:flex-row items-center justify-center gap-6 mb-4">
+                        <div class="w-24 h-24">
+                            <Image src={logoOcto} alt="O.C.T.O. Selo Menor" class="w-full h-full object-contain mix-blend-multiply drop-shadow-none" />
+                        </div>
+                        <div class="flex flex-col items-center md:items-start border-t-2 md:border-t-0 md:border-l-2 border-octo-ink pt-4 md:pt-0 pl-0 md:pl-6 max-w-xl">
+                            <span class="font-display text-3xl font-bold tracking-widest text-octo-ink mb-1 uppercase">O.C.T.O.</span>
+                            <span class="text-[10px] md:text-xs opacity-90 uppercase tracking-widest leading-relaxed">
+                                OFFICIAL REPOSITORY OF DATA EXTRACTION DESCRIBING UNUSUAL DESFONTS.<br/>
+                                DEPARTMENT OF ANOMALOUS INCIDENTS & VITAL INVESTIGATION OPERATIONS.
+                            </span>
+                        </div>
+                    </div>
+                    <p class="opacity-90 mt-2 border-t-2 border-octo-ink pt-4 w-full uppercase tracking-widest">
+                        Copyright &copy; {new Date().getFullYear()} ORÁCULO DIGITAL. All rights reserved.
+                    </p>
+                </footer>
+            </main>
+        </div>
+    </body>
+</html>

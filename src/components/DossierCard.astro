@@ -1,0 +1,43 @@
+---
+// src/components/DossierCard.astro
+export interface Props {
+    title: string;
+    description: string;
+    pubDate: Date;
+    category: string;
+    evidenceScale: string;
+    slug: string;
+}
+
+const { title, description, pubDate, category, evidenceScale, slug } = Astro.props;
+---
+<a href={`/artigos/${slug}`} class="block border-2 border-octo-ink bg-transparent hover:shadow-[4px_4px_0_0_#1C2331] transition-shadow group h-full flex flex-col">
+    {/* Cabeçalho do Card (Metadados) */}
+    <div class="bg-octo-ink text-octo-paper font-mono text-[10px] md:text-xs uppercase grid grid-cols-2 border-b-2 border-octo-ink">
+        <div class="p-2 border-r border-octo-paper border-dashed flex flex-col">
+            <span class="opacity-70 tracking-widest leading-none mb-1">DATA:</span>
+            <span class="font-bold leading-tight">{pubDate ? new Date(pubDate).toLocaleDateString('pt-BR') : 'REDACTED'}</span>
+        </div>
+        <div class="p-2 flex flex-col overflow-hidden">
+            <span class="opacity-70 tracking-widest leading-none mb-1">DEPTO:</span>
+            <span class="font-bold leading-tight truncate">{category}</span>
+        </div>
+    </div>
+
+    {/* Corpo do Card */}
+    <div class="p-4 flex-grow flex flex-col">
+        <h3 class="font-display font-bold uppercase text-xl border-b border-octo-ink pb-2 mb-2 text-octo-ink group-hover:underline decoration-2 underline-offset-4 leading-tight">
+            {title}
+        </h3>
+        <p class="font-serif text-sm text-octo-ink mb-6 flex-grow line-clamp-4 leading-relaxed hyphens-auto text-justify">
+            {description}
+        </p>
+
+        {/* Selo de Evidência */}
+        <div class="mt-auto">
+            <span class="border-2 border-octo-stamp text-octo-stamp font-mono font-bold px-2 py-1 inline-block uppercase tracking-widest text-[10px] sm:text-xs shadow-[2px_2px_0_0_#3A4A5A]">
+                [{evidenceScale}]
+            </span>
+        </div>
+    </div>
+</a>
