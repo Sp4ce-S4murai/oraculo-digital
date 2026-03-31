@@ -70,7 +70,6 @@ const otherPosts = sortedPosts.slice(1);
                             description={post.data.description}
                             pubDate={post.data.pubDate}
                             category={post.data.category}
-                            evidenceScale={post.data.evidenceScale}
                             slug={post.id}
                         />
                     ))}
@@ -107,35 +106,6 @@ const otherPosts = sortedPosts.slice(1);
                 </ul>
             </div>
 
-            {/* Widget: Escala de Evidência */}
-            <div class="border-4 border-octo-ink bg-octo-paper shadow-[8px_8px_0_0_#1C2331]">
-                <div class="bg-octo-ink text-octo-paper p-4 md:p-6">
-                    <h3 class="font-display font-bold text-2xl uppercase tracking-wider leading-none">
-                        NÍVEL DE EVIDÊNCIA DO POST
-                    </h3>
-                </div>
-                <div class="p-4 border-b-2 border-octo-ink text-center">
-                    <span class="font-display font-bold uppercase text-xl text-octo-ink">NÍVEL DE EVIDÊNCIA DO POST</span>
-                </div>
-                <div class="grid grid-cols-4 divide-x-2 divide-octo-ink font-mono text-[10px] md:text-xs font-bold uppercase text-center bg-octo-paper text-octo-ink h-32">
-                    <div class="p-2 flex flex-col items-center justify-end hover:bg-[#EBE7DF]">
-                        <div class="h-2 w-full bg-octo-ink opacity-30 mb-2"></div>
-                        <span class="break-words">CIRCUNSTANCIAL</span>
-                    </div>
-                    <div class="p-2 flex flex-col items-center justify-end hover:bg-[#EBE7DF]">
-                        <div class="h-6 w-full bg-octo-ink opacity-60 mb-2"></div>
-                        <span class="break-words">TESTEMUNHAL</span>
-                    </div>
-                    <div class="p-2 flex flex-col items-center justify-end hover:bg-[#EBE7DF]">
-                        <div class="h-10 w-full bg-octo-ink opacity-80 mb-2"></div>
-                        <span class="break-words">DOCUMENTAL</span>
-                    </div>
-                    <div class="p-2 flex flex-col items-center justify-end hover:bg-[#EBE7DF]">
-                        <div class="h-16 w-full bg-octo-ink mb-2"></div>
-                        <span class="break-words">MATERIAL</span>
-                    </div>
-                </div>
-            </div>
             
         </aside>
     </div>

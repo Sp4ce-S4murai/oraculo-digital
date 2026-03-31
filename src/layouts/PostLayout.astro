@@ -26,12 +26,8 @@ const { frontmatter } = Astro.props;
                     <span class="font-mono text-[10px] sm:text-xs font-bold text-octo-stamp mb-1 uppercase tracking-wider">Depto.</span>
                     <span class="font-mono text-xs sm:text-sm font-bold text-octo-ink uppercase">{frontmatter.category}</span>
                 </div>
-                <div class="flex flex-col border-r border-octo-ink p-3 col-span-2 md:col-span-1">
-                    <span class="font-mono text-[10px] sm:text-xs font-bold text-octo-stamp mb-1 uppercase tracking-wider">Evidência. Grau</span>
-                    <span class="font-mono text-xs sm:text-sm font-bold uppercase underline decoration-2 underline-offset-4">{frontmatter.evidenceScale}</span>
-                </div>
-                <div class="flex flex-col p-3 bg-octo-ink text-octo-paper col-span-2 md:col-span-1 justify-center">
-                    <span class="font-mono text-[10px] font-bold mb-1 uppercase tracking-wider opacity-80">Agente Respons.</span>
+                <div class="flex flex-col border-r border-octo-ink p-3 col-span-2 md:col-span-2 bg-octo-ink text-octo-paper justify-center">
+                    <span class="font-mono text-[10px] font-bold mb-1 uppercase tracking-wider opacity-80">Agente Responsável</span>
                     <span class="font-mono text-xs sm:text-sm font-bold uppercase">{frontmatter.author || 'REDACTED'}</span>
                 </div>
             </div>

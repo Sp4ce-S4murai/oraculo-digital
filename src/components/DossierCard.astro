@@ -5,11 +5,10 @@ export interface Props {
     description: string;
     pubDate: Date;
     category: string;
-    evidenceScale: string;
     slug: string;
 }
 
-const { title, description, pubDate, category, evidenceScale, slug } = Astro.props;
+const { title, description, pubDate, category, slug } = Astro.props;
 ---
 <a href={`/artigos/${slug}`} class="block border-2 border-octo-ink bg-transparent hover:shadow-[4px_4px_0_0_#1C2331] transition-shadow group h-full flex flex-col">
     {/* Cabeçalho do Card (Metadados) */}
@@ -33,11 +32,5 @@ const { title, description, pubDate, category, evidenceScale, slug } = Astro.pro
             {description}
         </p>
 
-        {/* Selo de Evidência */}
-        <div class="mt-auto">
-            <span class="border-2 border-octo-stamp text-octo-stamp font-mono font-bold px-2 py-1 inline-block uppercase tracking-widest text-[10px] sm:text-xs shadow-[2px_2px_0_0_#3A4A5A]">
-                [{evidenceScale}]
-            </span>
-        </div>
     </div>
 </a>
