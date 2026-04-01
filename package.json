@@ -16,7 +16,7 @@
     "@astrojs/sitemap": "^3.7.2",
     "autoprefixer": "^10.4.21",
     "postcss": "^8.5.4",
-    "@astrojs/vercel": "^10.0.3",
+
     "astro": "^6.1.2",
     "rehype-katex": "^7.0.1",
     "remark-math": "^6.0.0",
