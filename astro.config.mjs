@@ -1,8 +1,7 @@
 import { defineConfig } from 'astro/config';
 import mdx from '@astrojs/mdx';
-import tailwind from '@astrojs/tailwind';
 import sitemap from '@astrojs/sitemap';
-import vercel from '@astrojs/vercel/serverless';
+import vercel from '@astrojs/vercel';
 
 export default defineConfig({
     site: 'https://oraculodigital.com',
@@ -10,8 +9,12 @@ export default defineConfig({
     compressHTML: true,
     integrations: [
         mdx(),
-        tailwind(),
         sitemap()
     ],
     adapter: vercel(),
+    vite: {
+        css: {
+            postcss: './postcss.config.mjs'
+        }
+    }
 });
